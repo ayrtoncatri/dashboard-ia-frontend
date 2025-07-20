@@ -49,60 +49,60 @@ const ProcesoForm: React.FC<{ onCreate: () => void }> = ({ onCreate }) => {
   };
 
   return (
-    <form className="bg-white rounded-xl shadow p-6 mb-8" onSubmit={handleSubmit}>
-      <h2 className="text-lg font-bold mb-4">Agregar Proceso</h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+    <form className="bg-white rounded-2xl shadow-xl p-8 mb-8 max-w-2xl mx-auto" onSubmit={handleSubmit}>
+      <h2 className="text-2xl font-bold mb-6 text-blue-800">Agregar Proceso</h2>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div>
-          <label className="block font-medium">Nombre</label>
+          <label className="block font-semibold mb-1 text-gray-700">Nombre</label>
           <input
             type="text"
             name="nombre"
             value={form.nombre}
             onChange={handleChange}
-            className="w-full border rounded p-2"
+            className="w-full border border-gray-300 rounded-xl px-4 py-2 focus:ring-2 focus:ring-blue-300 outline-none shadow"
             required
           />
         </div>
         <div>
-          <label className="block font-medium">Responsable</label>
+          <label className="block font-semibold mb-1 text-gray-700">Responsable</label>
           <input
             type="text"
             name="responsable"
             value={form.responsable}
             onChange={handleChange}
-            className="w-full border rounded p-2"
+            className="w-full border border-gray-300 rounded-xl px-4 py-2 focus:ring-2 focus:ring-blue-300 outline-none shadow"
             required
           />
         </div>
         <div>
-          <label className="block font-medium">Estado</label>
+          <label className="block font-semibold mb-1 text-gray-700">Estado</label>
           <select
             name="estado"
             value={form.estado}
             onChange={handleChange}
-            className="w-full border rounded p-2"
+            className="w-full border border-gray-300 rounded-xl px-4 py-2 focus:ring-2 focus:ring-blue-300 outline-none shadow"
           >
             {estados.map(e => <option key={e} value={e}>{e}</option>)}
           </select>
         </div>
         <div>
-          <label className="block font-medium">Fecha</label>
+          <label className="block font-semibold mb-1 text-gray-700">Fecha</label>
           <input
             type="date"
             name="fecha"
             value={form.fecha}
             onChange={handleChange}
-            className="w-full border rounded p-2"
+            className="w-full border border-gray-300 rounded-xl px-4 py-2 focus:ring-2 focus:ring-blue-300 outline-none shadow"
             required
           />
         </div>
         <div className="md:col-span-2">
-          <label className="block font-medium">Descripción</label>
+          <label className="block font-semibold mb-1 text-gray-700">Descripción</label>
           <textarea
             name="descripcion"
             value={form.descripcion}
             onChange={handleChange}
-            className="w-full border rounded p-2"
+            className="w-full border border-gray-300 rounded-xl px-4 py-2 focus:ring-2 focus:ring-blue-300 outline-none shadow"
             rows={2}
             required
           />
@@ -110,12 +110,13 @@ const ProcesoForm: React.FC<{ onCreate: () => void }> = ({ onCreate }) => {
       </div>
       <button
         type="submit"
-        className="mt-4 px-6 py-2 rounded bg-blue-600 text-white font-bold hover:bg-blue-700 transition"
+        className="mt-6 w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 rounded-xl shadow-xl transition"
         disabled={loading}
       >
         {loading ? "Agregando..." : "Agregar"}
       </button>
     </form>
+
   );
 };
 
