@@ -1,6 +1,7 @@
 import React from "react";
 import { useUser } from "../context/UserContext";
 import { useRouter } from "next/router";
+import Link from 'next/link';
 
 const Navbar: React.FC = () => {
   const { user, logout } = useUser();
@@ -18,9 +19,9 @@ const Navbar: React.FC = () => {
           Dashboard IA
         </span>
         <div className="flex gap-6 items-center">
-          <a href="/" className="text-white hover:text-blue-200 transition font-medium">
+          <Link href="/" className="text-white hover:text-blue-200 transition font-medium">
             Procesos
-          </a>
+          </Link>
           {user && (
             <>
               <span className="text-white">Hola, {user.nombre}</span>
