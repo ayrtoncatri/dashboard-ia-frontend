@@ -87,117 +87,162 @@ const ProcesoList: React.FC = () => {
     <div className="mt-6">
       <h2 className="text-xl font-bold mb-4">Procesos empresariales</h2>
       {loading && <p>Cargando...</p>}
-      <table className="w-full text-left border">
-        <thead>
-          <tr className="bg-gray-100">
-            <th className="p-2">Nombre</th>
-            <th className="p-2">Descripción</th>
-            <th className="p-2">Estado</th>
-            <th className="p-2">Fecha</th>
-            <th className="p-2">Responsable</th>
-            <th className="p-2">Acciones</th>
-          </tr>
-        </thead>
-        <tbody>
-          {procesos.map((p) =>
-            editId === p.id ? (
-              <tr key={p.id} className="border-t bg-blue-50">
-                <td className="p-2">
-                  <input
-                    name="nombre"
-                    value={editForm.nombre ?? ""}
-                    onChange={handleEditChange}
-                    className="border rounded p-1 w-full"
-                  />
-                </td>
-                <td className="p-2">
-                  <textarea
-                    name="descripcion"
-                    value={editForm.descripcion ?? ""}
-                    onChange={handleEditChange}
-                    className="border rounded p-1 w-full"
-                    rows={2}
-                  />
-                </td>
-                <td className="p-2">
-                  <select
-                    name="estado"
-                    value={editForm.estado ?? ""}
-                    onChange={handleEditChange}
-                    className="border rounded p-1 w-full"
-                  >
-                    {estados.map((e) => (
-                      <option key={e} value={e}>
-                        {e}
-                      </option>
-                    ))}
-                  </select>
-                </td>
-                <td className="p-2">
-                  <input
-                    type="date"
-                    name="fecha"
-                    value={editForm.fecha ?? ""}
-                    onChange={handleEditChange}
-                    className="border rounded p-1 w-full"
-                  />
-                </td>
-                <td className="p-2">
-                  <input
-                    name="responsable"
-                    value={editForm.responsable ?? ""}
-                    onChange={handleEditChange}
-                    className="border rounded p-1 w-full"
-                  />
-                </td>
-                <td className="p-2 flex gap-1">
-                  <button
-                    onClick={() => saveEdit(p.id)}
-                    className="bg-green-500 text-white px-3 py-1 rounded hover:bg-green-600 transition"
-                  >
-                    Guardar
-                  </button>
-                  <button
-                    onClick={cancelEdit}
-                    className="bg-gray-400 text-white px-3 py-1 rounded hover:bg-gray-500 transition"
-                  >
-                    Cancelar
-                  </button>
-                </td>
-              </tr>
-            ) : (
-              <tr key={p.id} className="border-t">
-                <td className="p-2">{p.nombre}</td>
-                <td className="p-2">{p.descripcion}</td>
-                <td className="p-2">{p.estado}</td>
-                <td className="p-2">{new Date(p.fecha).toLocaleDateString()}</td>
-                <td className="p-2">{p.responsable}</td>
-                <td className="p-2 flex gap-1">
-                  <button
-                    onClick={() => startEdit(p)}
-                    className="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600 transition"
-                  >
-                    Editar
-                  </button>
-                  <button
-                    onClick={() => handleDelete(p.id)}
-                    className="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600 transition"
-                  >
-                    Eliminar
-                  </button>
-                  <button
-                    onClick={() => handleIaReport(p)}
-                    className="bg-purple-500 text-white px-3 py-1 rounded hover:bg-purple-600 transition"
-                  >
-                    Generar reporte IA
-                  </button>
+      <div className="hidden md:block">
+        <table className="min-w-full bg-white rounded-2xl shadow-xl overflow-hidden text-base">
+          <thead>
+            <tr className="bg-gray-100 text-gray-700 text-sm">
+              <th className="px-4 py-3">Nombre</th>
+              <th className="px-4 py-3">Descripción</th>
+              <th className="px-4 py-3">Estado</th>
+              <th className="px-4 py-3">Fecha</th>
+              <th className="px-4 py-3">Responsable</th>
+              <th className="px-4 py-3">Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            {procesos.map((p) =>
+              editId === p.id ? (
+                <tr key={p.id} className="hover:bg-blue-50">
+                  <td className="px-4 py-2">
+                    <input
+                      name="nombre"
+                      value={editForm.nombre ?? ""}
+                      onChange={handleEditChange}
+                      className="border rounded p-1 w-full"
+                    />
+                  </td>
+                  <td className="px-4 py-2">
+                    <textarea
+                      name="descripcion"
+                      value={editForm.descripcion ?? ""}
+                      onChange={handleEditChange}
+                      className="border rounded p-1 w-full"
+                      rows={2}
+                    />
+                  </td>
+                  <td className="px-4 py-2">
+                    <select
+                      name="estado"
+                      value={editForm.estado ?? ""}
+                      onChange={handleEditChange}
+                      className="border rounded p-1 w-full"
+                    >
+                      {estados.map((e) => (
+                        <option key={e} value={e}>
+                          {e}
+                        </option>
+                      ))}
+                    </select>
+                  </td>
+                  <td className="px-4 py-2">
+                    <input
+                      type="date"
+                      name="fecha"
+                      value={editForm.fecha ?? ""}
+                      onChange={handleEditChange}
+                      className="border rounded p-1 w-full"
+                    />
+                  </td>
+                  <td className="px-4 py-2">
+                    <input
+                      name="responsable"
+                      value={editForm.responsable ?? ""}
+                      onChange={handleEditChange}
+                      className="border rounded p-1 w-full"
+                    />
+                  </td>
+                  <td className="p-2 flex gap-1">
+                    <button
+                      onClick={() => saveEdit(p.id)}
+                      className="bg-green-500 text-white px-3 py-1 rounded hover:bg-green-600 transition"
+                    >
+                      Guardar
+                    </button>
+                    <button
+                      onClick={cancelEdit}
+                      className="bg-gray-400 text-white px-3 py-1 rounded hover:bg-gray-500 transition"
+                    >
+                      Cancelar
+                    </button>
+                  </td>
+                </tr>
+              ) : (
+                <tr key={p.id} className="border-t hover:bg-blue-50 transition-all">
+                  <td className="p-2">{p.nombre}</td>
+                  <td className="p-2">{p.descripcion}</td>
+                  <td className="p-2">{p.estado}</td>
+                  <td className="p-2">{new Date(p.fecha).toLocaleDateString()}</td>
+                  <td className="p-2">{p.responsable}</td>
+                  <td className="p-2 flex gap-1">
+                    <button
+                      onClick={() => startEdit(p)}
+                      className="bg-blue-500 hover:bg-blue-700 text-white px-4 py-1 rounded-xl shadow transition"
+                    >
+                      Editar
+                    </button>
+                    <button
+                      onClick={() => handleDelete(p.id)}
+                      className="bg-red-500 hover:bg-red-700 text-white px-4 py-1 rounded-xl shadow transition"
+                    >
+                      Eliminar
+                    </button>
+                    <button
+                      onClick={() => handleIaReport(p)}
+                      className="bg-purple-600 hover:bg-purple-800 text-white px-4 py-1 rounded-xl shadow transition"
+                    >
+                      Generar reporte IA
+                    </button>
 
-                </td>
-              </tr>
-            )
-          )}
-        </tbody>
-      </table>
+                  </td>
+                </tr>
+              )
+            )}
+          </tbody>
+        </table>
+      </div>
+
+      <div className="md:hidden space-y-4">
+          {procesos.map((p) => (
+            <div key={p.id} className="bg-white rounded-2xl shadow-xl p-4 flex flex-col gap-2">
+              <div>
+                <span className="font-semibold">Nombre:</span> {p.nombre}
+              </div>
+              <div>
+                <span className="font-semibold">Descripción:</span> {p.descripcion}
+              </div>
+              <div>
+                <span className="font-semibold">Estado:</span> {p.estado}
+              </div>
+              <div>
+                <span className="font-semibold">Fecha:</span> {new Date(p.fecha).toLocaleDateString()}
+              </div>
+              <div>
+                <span className="font-semibold">Responsable:</span> {p.responsable}
+              </div>
+              <div className="flex gap-2 mt-2">
+                <button
+                  onClick={() => startEdit(p)}
+                  className="bg-blue-500 hover:bg-blue-700 text-white px-4 py-1 rounded-xl shadow transition text-sm"
+                >
+                  Editar
+                </button>
+                <button
+                  onClick={() => handleDelete(p.id)}
+                  className="bg-red-500 hover:bg-red-700 text-white px-4 py-1 rounded-xl shadow transition text-sm"
+                >
+                  Eliminar
+                </button>
+                <button
+                  onClick={() => handleIaReport(p)}
+                  className="bg-purple-600 hover:bg-purple-800 text-white px-4 py-1 rounded-xl shadow transition text-sm"
+                >
+                  Reporte IA
+                </button>
+              </div>
+            </div>
+          ))}
+        </div>
+
       {!loading && procesos.length === 0 && (
         <p className="mt-4 text-gray-500">No hay procesos registrados.</p>
       )}
@@ -209,21 +254,34 @@ const ProcesoList: React.FC = () => {
           </div>
         </div>
       )}
-
       {iaResult && (
-        <div className="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-10">
-          <div className="bg-white p-6 rounded-xl shadow-xl max-w-md w-full">
-            <h3 className="text-xl font-bold mb-2">Reporte IA</h3>
-            <p className="mb-4 whitespace-pre-line">{iaResult}</p>
-            <button
-              onClick={() => setIaResult(null)}
-              className="bg-blue-600 text-white px-6 py-2 rounded font-semibold hover:bg-blue-700 transition"
+        <div className="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50 p-4">
+          <div
+            className="bg-white rounded-2xl shadow-2xl w-full max-w-lg flex flex-col"
+            style={{ maxHeight: "95vh" }}
+          >
+            <h3 className="text-2xl font-bold mb-3 text-purple-700 px-6 pt-6">
+              Reporte IA
+            </h3>
+            {/* Aquí va el scroll, OJO: flex-1 y overflow-y-auto */}
+            <div
+              className="flex-1 overflow-y-auto whitespace-pre-line break-words text-gray-800 px-6 mb-4"
+              style={{ minHeight: 120, maxHeight: "56vh" }}
             >
-              Cerrar
-            </button>
+              {iaResult}
+            </div>
+            <div className="px-6 pb-6 flex justify-end">
+              <button
+                onClick={() => setIaResult(null)}
+                className="bg-purple-600 hover:bg-purple-800 text-white px-6 py-2 rounded-xl font-semibold shadow"
+              >
+                Cerrar
+              </button>
+            </div>
           </div>
         </div>
       )}
+
     </div>
   );
 };
