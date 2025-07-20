@@ -19,7 +19,7 @@ const LoginPage: React.FC = () => {
         onSubmit={handleSubmit}
         className="bg-white p-8 rounded-xl shadow w-full max-w-xs"
       >
-        <h2 className="text-2xl font-bold mb-6 text-center">Login Maclete</h2>
+        <h2 className="text-2xl font-bold mb-6 text-center">Login</h2>
         <input
           type="text"
           placeholder="Tu nombre"
